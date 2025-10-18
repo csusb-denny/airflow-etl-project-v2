@@ -1,3 +1,8 @@
+# Postgres = Database
+# DB-Init creates the airflow and warehouse databases if needed
+# airflow-init installs python deps, initializses airflow metadata DB and creates an admin user
+# scheduler: evaluates the DAG schedules and triggers task
+# webserver: is our UI at local host
 services:
   postgres:
     image: postgres:15
@@ -10,7 +15,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  # Creates the airflow (metadata) and warehouse DBs if missing
+  #Creates the airflow (metadata) and warehouse DBs if missing
   db-init:
     image: postgres:15
     depends_on:
@@ -64,7 +69,7 @@ services:
     environment:
       AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW__CORE__LOAD_EXAMPLES}
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:${POSTGRES_PORT}/${AIRFLOW_DB_NAME}
-      # Let the DAG access warehouse DB via env
+      #Let the DAG access warehouse DB via env
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -106,3 +111,4 @@ services:
 
 volumes:
   pgdata:
+
