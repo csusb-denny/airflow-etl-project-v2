@@ -1,3 +1,24 @@
+#PreReq:
+Docker
+Git
+pgAdmin4 (optional for table view)
+
+git clone repo
+
+ENVIROMENT TABLE!
+.env
+POSTGRES_USER=etl
+POSTGRES_PASSWORD=etl_password
+POSTGRES_DB=warehouse
+POSTGRES_PORT=5432
+
+AIRFLOW**CORE**LOAD_EXAMPLES=False
+
+WEATHER_LAT=34.10
+WEATHER_LON=-117.29
+FINANCE_SYMBOL=MSFT
+FINANCE_API_KEY=demo
+
 # Airflow ETL: Weather + Finance
 
 This project runs a daily ETL pipeline with Apache Airflow, loading weather (Open-Meteo) and finance (Alpha Vantage) data into Postgres.
@@ -49,3 +70,13 @@ docker compose exec -T postgres psql -U etl -d warehouse < includes/sql/create_t
 # http://localhost:8080   (user: admin, pass: admin)
 # Unpause and trigger etl_weather_finance
 ```
+
+# View data in pgAdmin4
+
+# weather data
+
+docker compose exec postgres psql -U etl -d warehouse -c "SELECT \* FROM weather_hourly LIMIT 10;"
+
+# finance data
+
+docker compose exec postgres psql -U etl -d warehouse -c "SELECT \* FROM finance_daily LIMIT 10;"
