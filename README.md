@@ -1,3 +1,12 @@
+Data Platform:
+  Pulls data from Open-Meteo and Alpha Vantage via HTTP
+  Normalize API JSON into tidy rows
+  POSTSQL holds two warehouse tables:
+      weather_hourly && finance_daily
+  Apache Airflow runs a DAG on a schedule (daily by default)
+  Infra: containerized by docker-compose
+TLDR: DAG -> Task -> Calls API -> Transform -> UPSERT to Postgres everyday
+
 # PreReq:
 Docker
 Git
