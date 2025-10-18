@@ -5,12 +5,13 @@ pgAdmin4 (optional for table view)
 
 git clone repo
 
-ENVIROMENT TABLE!
+
 .env
-POSTGRES_USER=etl
+```bashPOSTGRES_USER=etl
 POSTGRES_PASSWORD=etl_password
 POSTGRES_DB=warehouse
 POSTGRES_PORT=5432
+```
 
 AIRFLOW**CORE**LOAD_EXAMPLES=False
 
