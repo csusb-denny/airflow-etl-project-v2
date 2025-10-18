@@ -7,19 +7,26 @@ git clone repo
 
 
 .env
-```bashPOSTGRES_USER=etl
-POSTGRES_PASSWORD=etl_password
+```bash
+# ----- Postgres base -----
+POSTGRES_USER=etl
+POSTGRES_PASSWORD=etl_password_123
 POSTGRES_DB=warehouse
 POSTGRES_PORT=5432
-```
 
-AIRFLOW**CORE**LOAD_EXAMPLES=False
+# ----- Airflow base -----
+AIRFLOW__CORE__LOAD_EXAMPLES=False
 
+# Airflow will use Postgres DB named "airflow" for its metadata
+AIRFLOW_DB_NAME=airflow
+
+# ----- ETL parameters -----
 WEATHER_LAT=34.10
 WEATHER_LON=-117.29
 FINANCE_SYMBOL=MSFT
 FINANCE_API_KEY=demo
 
+```
 # Airflow ETL: Weather + Finance
 
 This project runs a daily ETL pipeline with Apache Airflow, loading weather (Open-Meteo) and finance (Alpha Vantage) data into Postgres.
